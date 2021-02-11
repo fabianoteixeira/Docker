@@ -1,4 +1,4 @@
-# Comandos uteis do dia a dia
+# Comandos úteis do dia a dia
  
 ## Iniciar o container automaticamente com o sistema
   <p> no	Não reinicia o contêiner automaticamente. (o padrão)</p>
