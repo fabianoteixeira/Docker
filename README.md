@@ -8,4 +8,4 @@
   <p> <b>always	Sempre</b> reinicie o contêiner se ele parar.</p>
   
 ### Caso o container já esteja rodando, utilize da seguinte forma:   
-  docker update –restart=always <i><container><i/>
+  docker update –restart=always container
