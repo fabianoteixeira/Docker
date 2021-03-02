@@ -1,0 +1,60 @@
+version: '3.5'
+
+services:
+  postgres:
+    container_name: nifi_volume
+    image: apache/nifi:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /data/postgres
+    volumes:
+       - D:\Docker\Volumes\Nifi/logs:/opt/nifi/nifi-current/logs
+       - D:\Docker\Volumes\Nifi/provenance_repository:/opt/nifi/nifi-current/provenance_repository
+       - D:\Docker\Volumes\Nifi/state:/opt/nifi/nifi-current/state
+       - D:\Docker\Volumes\Nifi/conf:/opt/nifi/nifi-current/conf
+       - D:\Docker\Volumes\Nifi/content_repository:/opt/nifi/nifi-current/content_repository
+       - D:\Docker\Volumes\Nifi/database_repository:/opt/nifi/nifi-current/database_repository
+       - D:\Docker\Volumes\Nifi/flowfile_repository:/opt/nifi/nifi-current/flowfile_repository
+    ports:
+      - "9090:8080"
+    networks:
+      - nifi_volume
+    restart: unless-stopped
+  nifi-registry:
+    container_name: nifi-registry
+    image: apache/nifi-registry:latest
+    #environment: 
+      #AUTH: tls
+      #KEYSTORE_PATH: /opt/certs/keystore.jks
+      #KEYSTORE_TYPE: JKS
+      #KEYSTORE_PASSWORD: IoJJS9LMswEjqEjghjESMNg/uCOzWnGmfn2V4YTCUlw
+      #USTSTORE_PATH: /opt/certs/truststore.jks
+      #TRUSTSTORE_PASSWORD: HDaKbqn53cfvm84rtCi1hglNmUDOFEeSSyUGf+3YCVw
+      #TRUSTSTORE_TYPE: JKS
+      #INITIAL_ADMIN_IDENTITY: 'CN=AdminUser, OU=nifi'
+    volumes:
+       - D:\Docker\Volumes\nifi-register/logs:/opt/nifi-registry/nifi-registry-current/logs
+       - D:\Docker\Volumes\nifi-register/database:/opt/nifi-registry/nifi-registry-current/database
+       - D:\Docker\Volumes\nifi-register/run:/opt/nifi-registry/nifi-registry-current/run
+       - D:\Docker\Volumes\nifi-register/conf:/opt/nifi-registry/nifi-registry-current/conf
+       - D:\Docker\Volumes\nifi-register/flow_storage:/opt/nifi-registry/nifi-registry-current/flow_storage
+    restart: unless-stopped
+    ports:
+      - "18080:18080"
+    networks:
+      - nifi_volume 
+networks:
+  nifi_volume:
+    driver: bridge
+
+volumes:
+    postgres:
+
+
+ 
+
+
+
+
+
